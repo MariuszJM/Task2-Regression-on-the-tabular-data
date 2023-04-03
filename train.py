@@ -5,7 +5,6 @@ import logging
 
 from models.utils import get_model
 
-# Set up logging configuration
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
