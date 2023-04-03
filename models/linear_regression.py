@@ -3,6 +3,7 @@ from joblib import dump, load
 from models.model_interface import BaseModel
 import pandas as pd
 from typing import Any
+import os
 
 
 class LinearRegressor(BaseModel):
@@ -22,6 +23,7 @@ class LinearRegressor(BaseModel):
         return self.model.predict(X_test_preprocessed)
 
     def save(self, filename: str) -> None:
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
         dump(self, filename)
 
     @staticmethod
