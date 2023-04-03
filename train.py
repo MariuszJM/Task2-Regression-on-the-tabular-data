@@ -7,8 +7,9 @@ from models.utils import get_model
 def main(config_path: str) -> None:
     with open(config_path) as file:
         config = yaml.safe_load(file)
-    X_train = pd.read_csv(config['data']['train_data'])
-    y_train = pd.read_csv(config['data']['train_target'])
+    data = pd.read_csv(config['data']['train_data'])
+    X_train = data.drop("target", axis=1)
+    y_train = data["target"]
     model = get_model(config['model']['name'])
     model.fit(X_train, y_train)
     model.save(config['model']['save_path'])
